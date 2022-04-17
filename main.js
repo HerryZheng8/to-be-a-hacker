@@ -1,11 +1,13 @@
 const $ = selector => document.querySelector(selector)
 const $$ = selector => document.querySelectorAll(selector)
 
+
 let $btn = $('.button')
 let $$popups = $$('.popups')
 const App = {
     init() {
         this.$codePre = $('#code pre')
+        this.$code = $('#code')
         this.$button = $('.button')
         this.$modal = $('#modal')
         this.$popupGranted = $('.popup-granted')
@@ -25,11 +27,12 @@ const App = {
             this.$codePre.classList.add('editable')
         }
         document.onkeypress = (e) => {
-            console.log(e)
             if (e.key === '0') {
                 this.show(this.$popupGranted)
+                this.hide(this.$popupDenied)
                 this.canEdit = false
             } else if (e.key === '1') {
+                this.hide(this.$popupGranted)
                 this.show(this.$popupDenied)
                 this.canEdit = false
             } else if (e.key === '2') {
@@ -44,6 +47,7 @@ const App = {
                 let str = this.text.substr(0, this.cursor)
                 this.$codePre.innerText = str
                 this.cursor += 10
+                this.$code.scrollTop = this.$code.scrollHeight
             }
         }
     },
