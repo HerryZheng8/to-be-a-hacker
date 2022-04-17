@@ -22,6 +22,33 @@ body {
     color: #000000;
 }
 
+.show{
+    display: block!important;
+}
+
+@keyframes bounce {
+    0%{
+        opacity: 1;
+    }
+    49%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    99%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+#code pre.editable::after{
+    content:'|';
+    animation:bounce 1s infinite;
+}
+
 #modal {
     display: none;
     position: fixed;
@@ -64,7 +91,7 @@ body {
 }
 
 .popup.popup-granted{
-    display: block;
+    display: none;
 }
 
 .popup.popup-denied{
